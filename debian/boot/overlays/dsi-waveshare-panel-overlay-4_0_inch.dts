@@ -1,0 +1,52 @@
+/*
+ * Device Tree overlay for Waveshare DSI Touchscreens
+ *
+ */
+
+/dts-v1/;
+/plugin/;
+
+/ {
+	fragment@0 {
+		target = <&mipi_dsi0>;
+		__overlay__ {
+
+			status = "okay";
+
+			ports {
+				port@1 {
+					reg = <1>;
+					mipi_dsi_out: endpoint {
+						remote-endpoint = <&panel_in>;
+					};
+				};
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&i2c3>;
+		__overlay__ {
+
+			panel: panel_disp1@45 {
+				reg = <0x45>;
+				compatible = "waveshare,4.0inch-panel";
+
+				port {
+					panel_in: endpoint {
+						remote-endpoint = <&mipi_dsi_out>;
+					};
+				};
+			};
+
+			touch: goodix@14 {
+				reg = <0x14>;
+				compatible = "goodix,gt911";
+				touchscreen-size-x = <800>;
+				touchscreen-size-y = <480>;
+				touchscreen-inverted-y;
+				touchscreen-swapped-x-y;
+			};
+		};
+	};
+};

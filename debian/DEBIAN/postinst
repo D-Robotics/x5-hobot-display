@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# Distinguish whether it is installed on the board or pre-installed on the PC
+if [ ! -f "/sys/class/socinfo/soc_uid" ]; then
+    exit 0
+fi
+
+config_file="/lib/modules-load.d/9-hobot-dsi.conf"
+# for modname in `cat ${config_file}`
+while read modname
+do
+    if [ -n "$modname" ];then
+        # echo -e "#mod=${modname#*#} mod=${modname}"
+        if [ x"${modname#*#}" == x"${modname}" ];then
+            modprobe $modname
+            if [ $? != 0 ];then
+                echo "modlue: [ $modname ] install failed"!
+            fi
+        fi
+    else
+        echo "modlue: [ $modname ] is not exist"!
+    fi
+done < ${config_file}
+
+exit 0
+
