@@ -30,7 +30,7 @@
 
 			panel: panel_disp1@45 {
 				reg = <0x45>;
-				compatible = "waveshare,7.9inch-panel";
+				compatible = "waveshare,11.9inch-panel";
 
 				port {
 					panel_in: endpoint {
@@ -42,10 +42,10 @@
 			touch: goodix@14 {
 				reg = <0x14>;
 				compatible = "goodix,gt911";
-				touchscreen-size-x = <400>;
-				touchscreen-size-y = <1280>;
+				touchscreen-size-x = <320>;
+				touchscreen-size-y = <1480>;
 				touchscreen-inverted-x;
-				touchscreen-inverted-y;
+				touchscreen-swapped-x-y;
 			};
 		};
 	};
