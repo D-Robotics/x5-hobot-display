@@ -42,8 +42,8 @@
 			touch: goodix@14 {
 				reg = <0x14>;
 				compatible = "goodix,gt911";
-				touchscreen-size-x = <640>;
-				touchscreen-size-y = <480>;
+				touchscreen-size-x = <480>;
+				touchscreen-size-y = <640>;
 				touchscreen-inverted-y;
 				touchscreen-swapped-x-y;
 			};
